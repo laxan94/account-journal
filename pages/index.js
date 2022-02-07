@@ -1,24 +1,11 @@
 import Head from "next/head"
 import Link from "next/link"
 import { useState } from "react"
+import { useContext } from "react"
+import { StateContext } from "./_app"
 
 export default function Home() {
-  const initialState = {
-    entre: [
-      {
-        id: 1,
-        number: 2000,
-        description: "vente",
-      },
-      {
-        id: 2,
-        number: -3000,
-        description: "PC",
-      },
-    ],
-  }
-
-  const [entries, setEntries] = useState(initialState)
+  const { state } = useContext(StateContext)
 
   return (
     <>
@@ -41,7 +28,7 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          {Object.entries(entries).map(([itemId, { number, description }]) => {
+          {state.map(([itemId, { number, description }]) => {
             let positiveNumber = 0
             let negativeNumber = 0
 
